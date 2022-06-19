@@ -1,0 +1,151 @@
+table tbody {
+    display: block;
+    max-height: 300px;
+    overflow-y: scroll;
+}
+
+table thead,
+table tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.inputs {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+}
+
+/* Accordion styles */
+.tabs {
+    border-radius: 8px;
+    overflow: hidden;
+    /* box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.5); */
+}
+
+.tab {
+    width: 100%;
+    color: white;
+    overflow: hidden;
+}
+
+.tab-label {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    padding: 1em;
+    background: #2c3e50;
+    font-weight: bold;
+    cursor: pointer;
+    /* Icon */
+}
+
+.tab-label:hover {
+    background: #1a252f;
+}
+
+.tab-label::after {
+    content: "\276F";
+    width: 1em;
+    height: 1em;
+    text-align: center;
+    -webkit-transition: all .35s;
+    transition: all .35s;
+}
+
+/* .tab-content {
+    max-height: 0;
+    padding: 0 1em;
+    color: #2c3e50;
+    background: white;
+    -webkit-transition: all .35s;
+    transition: all .35s;
+} */
+
+.tab-close {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: end;
+    justify-content: flex-end;
+    padding: 1em;
+    font-size: 0.75em;
+    background: #2c3e50;
+    cursor: pointer;
+}
+
+.tab-close:hover {
+    background: #1a252f;
+}
+
+.inputs:checked+.tab-label {
+    background: #1a252f;
+}
+
+.inputs:checked+.tab-label::after {
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.inputs:checked~.tab-content {
+    max-height: 100vh;
+    padding: 1em;
+}
+
+/* ======================================== */
+fieldset {
+    padding: 0;
+    margin: 0;
+    /* border: 0; */
+    background: #f1f1f0;
+}
+
+
+.zoom {
+    display: inline-block;
+    position: relative;
+}
+
+.zoom img {
+    display: block;
+}
+
+
+
+ul li {
+    list-style: none;
+}
+
+.tableficha {
+    width: 60%;
+    margin: auto;
+    text-align: center;
+}
+
+.tabletitulo {
+    color: #fff;
+    background: #0E5FF1;
+    font-weight: bold;
+}
+
+.tableficha tr {
+    font-weight: bold;
+}
+
+.radio-img>input {
+    display: none;
+}
+
+.radio-img>img {
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.radio-img>input:checked+img {
+    border: 2px solid orange;
+}
+
+.collpse.tabs {
+    padding: unset;
+}
