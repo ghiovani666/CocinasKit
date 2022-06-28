@@ -1,0 +1,493 @@
+@extends('web.base')
+
+<!-- Titulo de la página -->
+@section('title_page')
+<title>Cocinas Innova</title>
+@endsection
+
+<!-- Contenido en el Head de la pagina -->
+@section('head_page')
+<!-- extras -->
+<link rel="stylesheet" href="{{ URL::asset('assets/plugins/owl-carousel/owl-carousel/owl.carousel.css') }}">
+<link rel="stylesheet"
+    href="{{ URL::asset('THIS/assets/plugins/cube-portfolio/cubeportfolio/css/cubeportfolio.min.css') }}">
+<link rel="stylesheet"
+    href="{{ URL::asset('THIS/assets/plugins/cube-portfolio/cubeportfolio/custom/custom-cubeportfolio.css') }}">
+
+<link rel="stylesheet" href="../../themes/warehouse/cache/v_615_8a6bf2d4042c5d2bd53744de401f69c6_all.css"
+    type="text/css" media="all" />
+<script type="text/javascript">
+var cko_cookie_info = '{"cko_colorInteriorMueble":4,"cko_colorAcabadoPuerta":2,"cko_canto":2,"cko_modeloTirador":5}';
+</script>
+
+<link rel="stylesheet" href="{{ URL::asset('css/product_details.css') }}">
+
+@endsection
+
+<!-- Contenido en el Body -->
+@section('content')
+
+<!-- <div class="container" style="width: 100%;max-width: 1190px;"> -->
+<div class="container" style="width: 100%; max-width: 1080px;">
+    <div class="row content-inner">
+        <div id="center_column" class="center_column col-xs-12 col-sm-12 col-sm-push-0">
+            <div itemscope itemtype="https://schema.org/Product">
+                <div class="cocinakit-mueble-general cocinakit-mueble-kit primary_block row ">
+
+                    <input type="hidden" value="{{session()->has('message') ? session()->get('message') : false}}"
+                        id="txt_modal" name="txt_modal" />
+
+                    <!--=== COLUMNA 1 ===-->
+                    @include('web.pages.columna_1.index')
+
+                    <form action="{{url('/cart/addItem')}}/<?php echo $Products[0]->id; ?>">
+                        <input type="hidden" value="{{$Products[0]->id_imagen}}" id="id_imagens" name="id_imagens" />
+
+                        <!--=== COLUMNA 2 ===-->
+                        @include('web.pages.columna_2.index')
+
+                        <!--=== COLUMNA 3 ===-->
+                        @include('web.pages.columna_3.index')
+
+                    </form>
+
+
+                    <!-- Modal Modelo de Puerta -->
+                    <div class="modal fade" id="md_modeloPuerta" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Imagen Del Producto</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body" id="updateDivPrincipal">
+                                    <img src="{{ $Products[0]->url_image }}" id="zoomImgModal" width="500px" />
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal producto -->
+                    <div class="modal fade" id="imagenModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Imagen Del Producto</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body" id="updateDivPrincipal">
+                                    <img src="{{ $Products[0]->url_image }}" id="zoomImgModal" width="500px" />
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal detalle del producto -->
+                    <div class="modal fade" id="detalleModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Detalle del Producto</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    {{$Products[0]->pro_info}}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal de Tirador -->
+                    <div class="modal fade" id="imagenModalTirador" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Visualizar Imagen </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body" id="updateDivTirador"></div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal de Color -->
+                    <div class="modal fade" id="imagenModalColor" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Visualizar Imagen </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body" id="updateDivColor"></div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content" style="border: unset !important;">
+                                <div class="alert" role="alert" style="display: flex;background: #13756f;color: white;">
+                                    <svg style="font-size: 30px;" width="1em" height="1em" viewBox="0 0 16 16"
+                                        class="bi bi-check-circle" fill="currentColor"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                            d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                        <path fill-rule="evenodd"
+                                            d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z" />
+                                    </svg> <label for=""
+                                        style="padding-left: 12px;font-size: 16px;color: white;">Producto agregado al carro</label>
+                                </div>
+                                <div class="modal-body">
+                                    <p>¿Quieres agregar un servicio de instalación?</p><br>
+                                    <p class="margin-bottom-30">Servicio de Armado y/o Instalación € 26.90
+                                    </p>
+
+                                    <div class="alert alert-primary" role="alert"
+                                        style="display: flex;color: #ffffff;background: #808080;">
+
+                                        <svg style="font-size: 30px;" width="1em" height="1em" viewBox="0 0 16 16"
+                                            class="bi bi-exclamation-circle" fill="currentColor"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                            <path
+                                                d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z" />
+                                        </svg>
+                                        <label for="" style="padding-left: 12px;font-size: 16px;color:#ffffff;">
+                                            Programa el servicio escribiendo a:
+                                            programatuservicio@tucocinakit.es Cobertura: Madrid
+                                            -España</label>
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Ver  más  Productos</button>
+                                    <a class="btn btn-danger" href="{{url('/cart')}}"><i class="fa fa-shopping-cart"  aria-hidden="true"></i> Ir al Carro de Compras</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--=== Content Medium ===-->
+    @include('web.pages.details_information')
+
+</div>
+
+@endsection
+
+@section('footer_page')
+
+<!-- --------------------------------------LISTA DE PRODUCTOS----------- -->
+<script src="{{ URL::asset('THIS/assets/plugins/cube-portfolio/cubeportfolio/js/jquery.cubeportfolio.min.js') }}">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-zoom/1.7.20/jquery.zoom.min.js"></script>
+<script src="{{ URL::asset('THIS/assets/js/plugins/cube-portfolio/cube-portfolio-4.js') }}"></script>
+
+<script>
+$(document).ready(function() {
+    App.init();
+    App.initScrollBar();
+    App.initParallaxBg();
+    OwlCarousel.initOwlCarousel();
+    RevolutionSlider.initRSfullWidth();
+
+    //====VARIABLES POR DEFAULS
+
+    $('#cost_total_hide,#costo_total').val(<?=
+    ($Products[0]->price - ($Products[0]->price*$Products[0]->desc_price)/100 + ($Products[0]->price*$Products[0]->aume_price)/100);
+    ?>);
+
+    $('#id_imagens').val(<?=$Products[0]->id_imagen;?>);
+    if (<?=$Products[0]->id_color;?>) {
+        handleSecundario(<?=$Products[0]->id_color;?>)
+    }
+
+});
+</script>
+<script>
+// Can also be used with $(document).ready()
+$(window).load(function() {
+    $('.flexslider').flexslider({
+        animation: "slide",
+        controlNav: "thumbnails"
+    });
+});
+
+function imagenFunction() {
+    $('#imagenModal').modal(true)
+}
+
+//=============FUNCIONES PARA COLOR Y TIRADOR===========
+function imagenFunctionColor(txt_id_medida) {
+
+    $.ajax({
+        type: 'get',
+        dataType: 'html',
+        url: '<?php echo url('/change_imagen_color');?>',
+        data: "txt_id_medida=" + txt_id_medida,
+        success: function(response) {
+            $('#updateDivColor').html(response);
+            $('#imagenModalColor').modal(true)
+        }
+    });
+}
+
+function imagenFunctionTirador(txt_id_medida) {
+    $.ajax({
+        type: 'get',
+        dataType: 'html',
+        url: '<?php echo url('/change_imagen_tirador');?>',
+        data: "txt_id_medida=" + txt_id_medida,
+        success: function(response) {
+            $('#updateDivTirador').html(response);
+            $('#imagenModalTirador').modal(true)
+        }
+    });
+}
+// ---------------abrir modal cuando se inserta el producto
+($('#txt_modal').val() == 1) ? $('#exampleModalLong').modal(true): ''
+
+$("input[type=radio][name=color_puertas_change]").change(function() {
+    const txt_id_color = $('input[name="color_puertas_change"]:checked').val();
+    console.log(txt_id_color);
+    handleSecundario(txt_id_color)
+});
+
+
+$("input[type=radio][name=color_puertas]").change(function() {
+    const txt_id_color = $('input[name="color_puertas"]:checked').val();
+    handleSecundario(txt_id_color)
+});
+//--------------END - CAMBIOS DE IMAGENS-------------
+const handleSecundario = (txt_id_color) => {
+    axios.post('/change_imagen_select_color', {
+            'txt_id_color': txt_id_color,
+        })
+        .then(function(response) {
+            $('#txt_caracteristica').html(response.data);
+        }).catch(function(error) {
+            if (error.response.status) {
+                alert('No existe la medida.! Gracias')
+            }
+        })
+}
+
+$('#txt_cantidad_precio').on('change keyup', function() {
+    const valor = parseFloat($('#cost_total_hide').val()).toFixed(2)
+    const total = this.value * valor
+    $('#costo_total').val(parseFloat(total).toFixed(2))
+});
+
+
+$("#txt_composicion").change(function() {
+    const id_producto = this.value;
+    window.location.href = window.location.origin + '/product_details_/' + id_producto;
+});
+
+$(document).ready(function() {
+    $('#produto').zoom();
+});
+
+//----------------------PRECIOS--------------
+$('#txt_ancho,#txt_alto,#txt_fondo').on('change', function() {
+
+    console.log($('#txt_ancho').val());
+
+
+
+    axios.post('/change_price', {
+            'txt_id_imagen': '<?php echo $Products[0]->id_imagen; ?>',
+            'txt_ancho': $('#txt_ancho').val(),
+            'txt_alto': $('#txt_alto').val(),
+            'txt_fondo': $('#txt_fondo').val(),
+        })
+        .then(function(response) {
+            if (response.data[1] != null) {
+                $('#cost_total_hide,#costo_total').val(response.data[0])
+                imagenPrincipal(response.data[1])
+            } else {
+                $('#cost_total_hide,#costo_total').val(response.data[0])
+            }
+
+        }).catch(function(error) {
+            if (error.response.status) {
+                alert('No existe la medida.! Gracias')
+            }
+            //https://stackoverflow.com/questions/56577124/how-to-handle-500-error-message-with-axios/56577273
+        })
+
+});
+
+
+
+$("input[type=radio][name=txt_model_enzimera]").click(function() {
+    const txt_id_color = $('input[name="txt_model_enzimera"]:checked').val();
+    let total_pre = parseFloat($('#cost_total_hide').val()) + parseFloat(txt_id_color.split('-')[0]);
+    $('#costo_total').val(total_pre);
+    handleTirador(txt_id_color.split('-')[1]) //Cambiar Imagen
+
+});
+
+//-------------- CAMBIOS DE IMAGENS -------------
+const handleTirador = (txt_id_tirador) => {
+    axios.post('/change_imagen_select_tirador', {
+            'txt_id_tirador': txt_id_tirador,
+        })
+        .then(function(response) {
+            $('#txt_caracteristica_tirador').html(response.data);
+        }).catch(function(error) {
+            if (error.response.status) {
+                alert('No existe la medida.! Gracias')
+            }
+        })
+}
+const imagenPrincipal = (url_image) => {
+    $('#txt_imagenPrincipal').attr('src', url_image);
+    $('.zoomImg').attr('src', url_image);
+    $('#zoomImgModal').attr('src', url_image);
+}
+
+//========================CAMBIA LA IMAGEN DE ENCIMERA - MUEBLES COMPLETOS
+$("input[type=radio][name=color_puerta_unero]").click(function() {
+    const txt_id = $('input[name="color_puerta_unero"]:checked').val();
+    handleTiradorEncimera(txt_id) //Cambiar Imagen
+});
+
+const handleTiradorEncimera = (txt_id) => {
+    axios.post('/change_tirador_encimera', {
+            'id': txt_id,
+        })
+        .then(function(response) {
+            $('#txt_caracteristica_tirador').html(response.data);
+        }).catch(function(error) {
+            if (error.response.status) {
+                alert('No existe la medida.! Gracias')
+            }
+        })
+}
+//========================OCULTA LA LISTA DE ENCIMERA- MUEBLES COMPLETOS
+
+
+
+//:::::::::::::::::::::: COLUMNA 2 :::::::::::::::
+$(document).ready(function() {
+    functionModuloPuerta(1)
+})
+
+$("input[type=radio][name=modelo_puertas]").change(function() {
+    const txt_id = $('input[name="modelo_puertas"]:checked').val();
+    functionModuloPuerta(txt_id)
+});
+
+const functionModuloPuerta = (txt_id) => {
+    axios.post('/change_modelo_puerta', {
+            'txt_id': txt_id,
+        })
+        .then(function(response) {
+            $('#txt_modelo_puerta').html(response.data);
+        }).catch(function(error) {
+            if (error.response.status) {
+                alert('No existe la medida.! Gracias')
+            }
+        })
+}
+
+//:::::::::::::::::::::: COLUMNA 1 :::::::::::::::
+$(document).ready(function() {
+    handleTirador(1)
+})
+
+$("#txt_tirador_unero1").on('change', function() {
+    $(".txt_modelo_tirador").show();
+    if (this.value == 0) {
+        //  $('#cost_total_hide,#costo_total').val($('#cost_total_hide').val())
+    }
+
+    // $("input[type=radio][name=txt_model_tirador]").prop('checked', false); 
+    // $('#cost_total_hide,#costo_total').val(); 
+
+    axios.get('/hide_tirador_encimera').then(function(response) {
+        $('.lista_uneros_').html("");
+    }).catch(function(error) {
+        if (error.response.status) {
+            console.log(error)
+        }
+    })
+
+})
+
+$('#txt_tirador_unero2').on('change', function() {
+    $(".txt_modelo_tirador").hide();
+    axios.get('/hide_tirador_encimera')
+        .then(function(response) {
+            $('.lista_uneros_').html(response.data);
+        }).catch(function(error) {
+            if (error.response.status) {
+                console.log(error)
+            }
+        })
+});
+
+$("input[type=radio][name=txt_model_tirador]").click(function() {
+    const txt_id_color = $('input[name="txt_model_tirador"]:checked').val();
+    let total_pre = parseFloat($('#cost_total_hide').val()) + parseFloat(txt_id_color.split('-')[0]);
+    $('#costo_total').val(total_pre);
+    handleTirador(txt_id_color.split('-')[1]) //Cambiar Imagen
+
+});
+
+//::::::::::::::::::::: MOSTRAR IMAGEN MODELO PUERTA
+function openModal_ModeloPuerta() {
+    $('#md_modeloPuerta').modal(true)
+}
+
+
+</script>
+
+<!--flex slider-->
+<script src="{{ URL::asset('THIS/assets_2/js/jquery.flexslider.js') }}"></script>
+<script src="{{ URL::asset('themes/warehouse/cache/v_726_15810251d95ac88cec9fad9fb952e72e.js') }}"></script>
+
+@endsection
