@@ -270,12 +270,12 @@ $('#uploadForm').on('submit', function(e) {
                 'success'
             )
 
-            $('img[name=image0]').attr('src', response.data.src0);
-            $('img[name=image1]').attr('src', response.data.src1);
-            $('img[name=image2]').attr('src', response.data.src2);
-            $('img[name=image3]').attr('src', response.data.src3);
-            $('img[name=image4]').attr('src', response.data.src4);
-            $('img[name=image5]').attr('src', response.data.src5);
+            // $('img[name=image0]').attr('src', response.data.src0);
+            // $('img[name=image1]').attr('src', response.data.src1);
+            // $('img[name=image2]').attr('src', response.data.src2);
+            // $('img[name=image3]').attr('src', response.data.src3);
+            // $('img[name=image4]').attr('src', response.data.src4);
+            // $('img[name=image5]').attr('src', response.data.src5);
 
             listarDataTable($('select[name=txt_id_cat]').val())
             $("input[name=image]").val(null);
@@ -357,7 +357,7 @@ function openModalCrud(id_producto, isValues) {
             $('img[id=blah_4]').attr('src', "/img/mc_admin/btn_agregar.png");
             $('img[id=blah_5]').attr('src', "/img/mc_admin/btn_agregar.png");
 
-            $('input:radio[name="txt_copete"]').filter('[value=1]').attr('checked', true);
+            $('input:radio[name="txt_copete"]').filter('[value=1]').prop('checked', true);
 
             $(".nameColor,.nameTirador,.nameEnzimera").val("").trigger("change");
             $(".nameColor,.nameTirador,.nameEnzimera").trigger("change");
@@ -366,6 +366,13 @@ function openModalCrud(id_producto, isValues) {
         }
         // CASO , SI ES FALSO => ES EDITAR
         if (id_producto) {
+
+            $("input[name=image0]").val(null);
+            $("input[name=image1]").val(null);
+            $("input[name=image2]").val(null);
+            $("input[name=image3]").val(null);
+            $("input[name=image4]").val(null);
+            $("input[name=image5]").val(null);
 
             listarComboBox(id_producto)
 
@@ -408,7 +415,7 @@ function openModalCrud(id_producto, isValues) {
                     $('textarea[name=txt_descripcion]').val(response.data[0].pro_info);
                     $('input[name=txt_pro_name]').val(response.data[0].pro_name);
                     $('input[name=txt_price]').val(response.data[0].price);
-                    $('input:radio[name="txt_copete"]').filter('[value=' + response.data[0].copete + ']').attr(
+                    $('input:radio[name="txt_copete"]').filter('[value=' + response.data[0].copete + ']').prop(
                         'checked', true);
 
                 }
