@@ -1,0 +1,79 @@
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.css" />
+<link rel="stylesheet" href="./style.css">
+
+
+git config credential.username "ghiovani666"
+
+<style type="text/css">
+.slider {
+    position: relative;
+}
+
+.slider-image {
+    /* padding: 30px; */
+    width: initial !important;
+    display: block !important;
+}
+
+.slider img {
+    object-fit: cover;
+    width: 100%;
+}
+
+.slick-prev,
+.slick-next {
+    position: absolute;
+    top: 50%;
+    z-index: 99;
+    width: 50px;
+    height: 50px;
+}
+
+.slick-next {
+    right: 2rem;
+}
+
+.slick-prev {
+    left: 2rem;
+}
+
+.slick-prev.slick-disabled:before,
+.slick-next.slick-disabled:before {
+    opacity: 1;
+}
+
+.slick-prev:before,
+.slick-next:before {
+    font-size: 50px;
+}
+
+
+.slick-prev:before,
+.slick-next:before {
+    font-family: 'slick';
+    font-size: 50px;
+    line-height: 1;
+    opacity: .75;
+    color: #13756f;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+</style>
+
+
+
+
+$('.slider').slick({
+    infinite: false,
+    slidesToShow: 3,
+    slidesToScroll: 3
+});
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.js"></script>
+
+// $(".nameColor").on("select2:select", function(e) {
+//     var select_val = $(e.currentTarget).val();
+//     console.log(select_val)
+// });
