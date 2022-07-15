@@ -105,18 +105,11 @@
 
                                             <hr>
 
-                                            <?php  
-                                                    $modeloPuerta = DB::select("SELECT * FROM mc_modelo_puerta c");                                   
-                                                ?>
+
                                             <div class="col-12" style="margin-bottom: 15px;">
-                                                <select name="txt_id_modelo_puerta" class="form-control ">
-                                                    @if(count($modeloPuerta)!=0)
-                                                    @foreach ($modeloPuerta as $items)
-                                                    <option value="{{ $items->id }}">
-                                                        {{ $items->nombre }}</option>
-                                                    @endforeach
-                                                    @endif
-                                                </select>
+                                                <select class="form-control" name="" id="">
+                                                    <option value=""></option>
+                                                    <select>
                                             </div>
 
 
@@ -303,7 +296,6 @@ function openModalCrud(id_producto, isValues) {
 
                     $('input[name=txt_pro_name]').val(response.data[0].name_color);
                     $('textarea[name=txt_descripcion]').val(response.data[0].description);
-                    $('select[name=txt_id_modelo_puerta]').val(response.data[0].id_modelo_puerta);
 
 
                 }

@@ -177,7 +177,7 @@ class MuebleColoresController extends Controller {
      
       $rowData_ = DB::select("
       SELECT 
-      `id`, `url_image`, `name_color`, `description`,id_modelo_puerta
+      `id`, `url_image`, `name_color`, `description`
       FROM mc_colores
       WHERE id=?
       ORDER BY id desc ", [$request->id_producto]);

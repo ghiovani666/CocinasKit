@@ -716,7 +716,7 @@ $(document).ready(function() {
     getTirador(1)
     getAcabadoPuerta(1)
     getModuloPuerta(1)
-   // getModuloPuertaColor(<=$modeloPuerta[0]->id_modelo_puerta;?>)
+   // getModuloPuertaColor(<?=$modeloPuerta[0]->id_modelo_puerta;?>)
 
     $(".txt_modelo_tirador").show();
     $(".txt_modelo_tirador_unero").hide();

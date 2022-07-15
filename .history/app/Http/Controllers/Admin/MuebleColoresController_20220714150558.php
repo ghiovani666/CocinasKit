@@ -72,6 +72,7 @@ class MuebleColoresController extends Controller {
                   $filename  =  time() .'_'.$file0->getClientOriginalName();
                   $path = "img/mc_mueble_colores";
                   $file0->move($path,$filename);
+
                
                   DB::table('mc_colores')->insert([
                     'name_color'          => $txt_pro_name, 
@@ -114,9 +115,6 @@ class MuebleColoresController extends Controller {
                     DB::table('mc_colores')
                       ->where("id",$id_imagen_0)
                       ->update([
-                        'name_color'          => $txt_pro_name, 
-                        'description'         => $txt_descripcion, 
-                        'id_modelo_puerta'    => $txt_id_modelo_puerta, 
                         'url_image' => '/img/mc_mueble_colores/'.$filename, 
                         'updated_at' =>date("Y-m-d H:i:s")
                       ]); 
@@ -177,7 +175,7 @@ class MuebleColoresController extends Controller {
      
       $rowData_ = DB::select("
       SELECT 
-      `id`, `url_image`, `name_color`, `description`,id_modelo_puerta
+      `id`, `url_image`, `name_color`, `description`
       FROM mc_colores
       WHERE id=?
       ORDER BY id desc ", [$request->id_producto]);

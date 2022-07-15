@@ -541,7 +541,7 @@ class MuebleCompletoController extends Controller {
   public function mueble_puertas_listar_(Request $request) {
 
     $cbColores = DB::select("
-                    SELECT M.id as id__, M.id_modelo_puerta as id_modelo_puerta__,T.id_color, M.name_color FROM mc_colores M
+                    SELECT M.id as id_color FROM mc_colores M
                     LEFT JOIN ( SELECT cin.id_color,cin.id_producto,cin.id_modelo_puerta FROM mc_colores c
                       INNER JOIN md_modelo_puerta_color_intermedio cin ON c.id = cin.id_color
                       WHERE cin.id_producto = ?
@@ -549,7 +549,7 @@ class MuebleCompletoController extends Controller {
                     ORDER BY
                     M.id ASC", [$request->id_producto]);
 
-    $rowData_ = DB::select("SELECT mp.id as id_modelo_puerta_s , mp.nombre, mp.url_image,mps.id_producto FROM mc_modelo_puerta mp INNER JOIN mc_modelo_puerta_intermedio mps ON mp.id = mps.id_modelo_puerta
+    $rowData_ = DB::select("SELECT mp.id , mp.nombre, mp.url_image,mp.id_modelo_puerta FROM mc_modelo_puerta mp INNER JOIN mc_modelo_puerta_intermedio mps ON mp.id = mps.id_modelo_puerta
                           WHERE mps.id_producto =? ORDER BY mp.id desc ", [$request->id_producto]);
 
     return view('admin.pages.mueble_completo.ajax.tablaProductoPuerta')

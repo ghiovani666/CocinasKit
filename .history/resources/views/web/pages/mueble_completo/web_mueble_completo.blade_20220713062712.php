@@ -91,7 +91,6 @@ var cko_cookie_info = '{"cko_colorInteriorMueble":4,"cko_colorAcabadoPuerta":2,"
                                         <div class="txt_modelo_tirador">
                                             <label for="layout">SELECIONE TIRADOR </label><br />
                                             <div>
-                                                @if(count($tirador)!=0)
                                                 @foreach($tirador as $altImg)
                                                 <label class="radio-img" title="{{$altImg->descripcion}}">
                                                     <input type="radio" name="txt_model_tirador" id="txt_model_tirador"
@@ -99,8 +98,8 @@ var cko_cookie_info = '{"cko_colorInteriorMueble":4,"cko_colorAcabadoPuerta":2,"
                                                     <img style="width: 40px;" src="{{$altImg->url_image}}">
                                                 </label>
                                                 @endforeach
-                                                @endif
                                             </div>
+
                                         </div>
                                         <div class="txt_modelo_tirador_unero">
                                             <label for="layout">SELECIONE UÑERO </label><br />
@@ -108,7 +107,6 @@ var cko_cookie_info = '{"cko_colorInteriorMueble":4,"cko_colorAcabadoPuerta":2,"
                                                 $tiradorUnero = DB::select("SELECT c.* FROM mc_tirador_unero c INNER JOIN mc_tirador_unero_intermedio cin ON c.id=cin.id_tirador_unero WHERE cin.id_producto=?", [$Products[0]->id]);
                                                 ?>
                                             <div>
-                                                @if(count($tiradorUnero)!=0)
                                                 @foreach($tiradorUnero as $altImg)
                                                 <label class="radio-img" title="{{$altImg->descripcion}}">
                                                     <input type="radio" name="txt_model_tiradorUnero"
@@ -117,7 +115,6 @@ var cko_cookie_info = '{"cko_colorInteriorMueble":4,"cko_colorAcabadoPuerta":2,"
                                                     <img style="width: 40px;" src="{{$altImg->url_image}}">
                                                 </label>
                                                 @endforeach
-                                                @endif
                                             </div>
                                         </div>
 
@@ -134,33 +131,7 @@ var cko_cookie_info = '{"cko_colorInteriorMueble":4,"cko_colorAcabadoPuerta":2,"
 
                     <form action="{{url('/cart/addItem')}}/<?php echo $Products[0]->id; ?>">
 
-                        <input type="hidden" value="{{$Products[0]->id_imagen}}" id="id_imagens" name="id_imagens" />
-                        <?php  
-                            $modeloPuerta = DB::select("SELECT * FROM mc_modelo_puerta c INNER JOIN mc_modelo_puerta_intermedio cin ON c.id=cin.id_modelo_puerta WHERE cin.id_producto=?", [$Products[0]->id]);                                   
-                        ?>
-                        <!--=== COLUMNA 2 ===-->
-                        <div class="col-xs-12 col-md-4 ">
-                            <div class="product_attributes margin-bottom-10">
-                                <h3 class="cko_pb_center_column_title" style="background: #6f6f6f;">MODELOS DE PUERTAS
-                                </h3>
-                                <fieldset style="height: 290px;">
-                                    <div class="col-8 col-sm-8">
-                                        <div>
-                                            @if(count($modeloPuerta)!=0)
-                                            @foreach($modeloPuerta as $item)
-                                            <label class="radio-img" title="{{$item->descripcion}}">
-                                                <input type="radio" name="modelo_puertas" value="{{$item->id}}" />
-                                                <img style="width: 35px;height: 50px;" src="{{$item->url_image}}">
-                                            </label>
-                                            @endforeach
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <div class="col-4 col-sm-4">
-                                        <div id="txt_modelo_puerta" style="text-align: center;"></div>
-                                    </div>
-                                </fieldset>
-                            </div>
+                        
 
                             <!--=== ACABADOS DE PUERTAS o colores===-->
                             <div class="product_attributes  margin-bottom-0">
@@ -716,10 +687,10 @@ $(document).ready(function() {
     getTirador(1)
     getAcabadoPuerta(1)
     getModuloPuerta(1)
-   // getModuloPuertaColor(<=$modeloPuerta[0]->id_modelo_puerta;?>)
+    // getModuloPuertaColor(<?=$modeloPuerta[0]->id_modelo_puerta;?>)
 
-    $(".txt_modelo_tirador").show();
-    $(".txt_modelo_tirador_unero").hide();
+    // $(".txt_modelo_tirador").show();
+    // $(".txt_modelo_tirador_unero").hide();
 })
 
 //::::::::::::::::::::::1. TIRADORES :::::::::::::::

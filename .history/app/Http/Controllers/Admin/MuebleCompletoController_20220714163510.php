@@ -549,7 +549,7 @@ class MuebleCompletoController extends Controller {
                     ORDER BY
                     M.id ASC", [$request->id_producto]);
 
-    $rowData_ = DB::select("SELECT mp.id as id_modelo_puerta_s , mp.nombre, mp.url_image,mps.id_producto FROM mc_modelo_puerta mp INNER JOIN mc_modelo_puerta_intermedio mps ON mp.id = mps.id_modelo_puerta
+    $rowData_ = DB::select("SELECT mp.id as id_modelo_puerta , mp.nombre, mp.url_image,mps.id_producto FROM mc_modelo_puerta mp INNER JOIN mc_modelo_puerta_intermedio mps ON mp.id = mps.id_modelo_puerta
                           WHERE mps.id_producto =? ORDER BY mp.id desc ", [$request->id_producto]);
 
     return view('admin.pages.mueble_completo.ajax.tablaProductoPuerta')

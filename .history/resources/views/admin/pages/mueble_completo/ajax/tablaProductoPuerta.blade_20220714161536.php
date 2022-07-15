@@ -10,7 +10,7 @@
     <tbody>
         @foreach ($rowData_ as $rows)
         <tr>
-            <td>{{ $rows->id_modelo_puerta_s }}</td>
+            <td>{{ $rows->id_modelo_puerta }}</td>
             <td>{{ $rows->nombre }}</td>
             <td>
                 <div class="attachment-block"><img style="width:100px;height: 120px;" src="{{ $rows->url_image }}"
@@ -28,19 +28,14 @@
 
                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
                     <div class="select2-purple">
-                        <select name="nameColor[]" multiple
-                            class="form-control nameColor">
+                       
                             @foreach ($cbColores as $items)
-                            @if($rows->id_modelo_puerta_s==$items->id_modelo_puerta__)
-
-                            <option value="{{ $items->id__  }}" id_producto="{{ $rows->id_producto }}"
-                                id_modelo_puerta="{{ $rows->id_modelo_puerta_s }}"
-                                {{ ($rows->id_modelo_puerta_s==$items->id_modelo_puerta__ ? $items->id__ == $items->id_color ? 'selected' : '':'') }}>
-                                {{ $items->name_color }}</option>
-
-                                @endif
+                           @if($rows->id_modelo_puerta=$items->id_mode)
+                           @endif
+                            <label value="{{ $items->id_color  }}" >{{ $items->id_modelo_puerta }}</label>
+                           
                             @endforeach
-                        </select>
+                     
                     </div>
                 </div>
             </td>
