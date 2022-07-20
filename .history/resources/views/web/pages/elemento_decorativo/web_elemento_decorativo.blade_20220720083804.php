@@ -482,7 +482,7 @@ $("input[type=radio][name=txt_color_puerta]").change(function() {
 });
 
 const getModuloPuerta = (id_modelo_puerta) => {
-    axios.post('/html_imagen_modelo_puerta_decorativo', {
+    axios.post('/html_imagen_modelo_puerta', {
             'txt_id': id_modelo_puerta,
         })
         .then(function(response) {

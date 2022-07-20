@@ -481,18 +481,7 @@ $("input[type=radio][name=txt_color_puerta]").change(function() {
   //  getModuloPuertaColor(id_modelo_puerta)
 });
 
-const getModuloPuerta = (id_modelo_puerta) => {
-    axios.post('/html_imagen_modelo_puerta_decorativo', {
-            'txt_id': id_modelo_puerta,
-        })
-        .then(function(response) {
-            $('#txt_modelo_puerta').html(response.data);
-        }).catch(function(error) {
-            if (error.response.status) {
-                // alert('No existe la medida.! Gracias')
-            }
-        })
-}
+
 
 
 
@@ -510,6 +499,7 @@ function precioTotal() {
             if (response.data[1] != null) {
                 $('#costo_total__,#costo_total').val(response.data[0])
                 imagenPrincipal(response.data[1])
+                console.log(response.data[1])
             } else {
                 $('#costo_total__,#costo_total').val(response.data[0])
             }
