@@ -1,0 +1,73 @@
+/* header top */
+#top-bar{background:#171616; color: #fff; line-height:21px;}
+.top-info ul{ list-style: none; float: right; padding:0; margin: 0;}
+.top-info span { font: 13px/28px "open sans"; padding-right: 15px; }
+.top-info span i { font-size: 13px; margin-right: 5px; }
+.top-info li{ float:left;}
+
+/* Logo
+====================================*/
+#logo-bar{
+    /* padding:10px 0; */
+    background:#fff;
+}
+#logo-bar.scroll-to-fixed-fixed{
+    box-shadow:0 0 10px #9C9999;
+    -webkit-box-shadow:0 0 10px #9C9999;
+    -moz-box-shadow:0 0 10px #9C9999;
+    -ms-box-shadow:0 0 10px #9C9999;
+    -o-box-shadow:0 0 10px #9C9999;
+}
+#logo{ float: left; }
+
+#logo > h1 {
+    margin:0;
+    line-height: 0;
+    font-size: 0;
+}
+#logo a img {
+    max-width:100%;
+    height: auto;
+}
+.content{
+    padding:30px 0 60px;
+    position: relative;
+}
+.sub_content{
+    margin-bottom:30px;
+}
+
+
+
+
+/* ===================================================== */
+/* 31. Button Up										 */
+/* ===================================================== */
+.btntoTop {
+    width: 44px;
+    height: 44px;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #34495e;
+    border-radius: 2px;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+    opacity: 0;
+    -webkit-transition: opacity 0.2s ease;
+    transition: opacity 0.2s ease;
+}
+.btntoTop:before {
+    content: "\f106";
+    display: inline-block;
+    vertical-align: middle;
+    font: 20px 'FontAwesome';
+    color: #b8bcc0;
+}
+.btntoTop.active {
+    opacity: 1;
+}
+.btntoTop.active:hover{
+    opacity: 0.8
+}
